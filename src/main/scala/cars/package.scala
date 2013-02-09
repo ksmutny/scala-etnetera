@@ -1,28 +1,9 @@
 package object cars {
-
-  object CarMaker extends Enumeration {
-    type CarMaker = Value
-    val Audi, Chevrolet, Porsche, Maserati, AstonMartin, BMW, Lamborghini = Value
-  }
-
-  object Drive extends Enumeration {
-    type Drive = Value
-    val RWD, FWD, AWD = Value
-  }
-
   import CarMaker._
   import Drive._
 
-  case class CarModel(carMaker: CarMaker, name: String, topSpeed: Int, zeroTo62: Double, drive: Drive, year: Int, price: Option[Int]) {
-    require(name != "", "Model name must not be empty")
-    require(topSpeed > 0, "Top speed must be positive")
-    require(zeroTo62 > 0, "Zero to 62 must be positive")
-    require(price == None || price.get >= 0, "If set, price must be non-negative")
-  }
-
   implicit def intToSomeInt(n: Int) = Some(n)
   val Classified = None
-
 
   // source: http://nfs.wikia.com/wiki/Need_for_Speed:_Hot_Pursuit_(2010)/Cars
   val models = List(
